@@ -28,7 +28,6 @@ function App() {
   const fetchProductForCategory = async(selectedCategory)=>{
     try{
       const productForCategoryResponse = await getProductByCategory(selectedCategory);
-      console.log(productForCategoryResponse)
       if(productForCategoryResponse.status===200){
         setProductsForCategory(productForCategoryResponse.data)
       }
@@ -55,7 +54,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/my-profile" element={<MyProfile />}></Route>
-          <Route path="/product-details" element={<ProductDetails />}></Route>
+          <Route path="/product-details/:productId" element={<ProductDetails />}></Route>
           <Route path="/product-for-category" element={<ProductsForCategory/>}></Route>
         </Route>
       </Routes>

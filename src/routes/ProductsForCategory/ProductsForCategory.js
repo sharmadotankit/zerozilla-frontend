@@ -5,7 +5,7 @@ import ProductCardComponent from '../../component/ProductCardComponent/ProductCa
 import { useNavigate } from 'react-router-dom';
 
 export default function ProductsForCategory() {
-    const {selectedCategory,productsForCategory} = useContext(ApplicationContext);
+    const {selectedCategory,productsForCategory,setSelectedProduct} = useContext(ApplicationContext);
     const navigate = useNavigate();
     
     useEffect(()=>{
@@ -14,11 +14,16 @@ export default function ProductsForCategory() {
         }
     },[selectedCategory])
 
-    const handleProductClick = () =>{
+
+    const handleProductClick = (item) =>{
+      if(item.id){
+        setSelectedProduct(item);
+        navigate(`/product-details/${item.id}`);
+      }
 
     }
   return (
-    <div>
+    <div style={{textAlign:'center'}}>
         <h1>Products for {selectedCategory}</h1>
         <div>
             {productsForCategory && productsForCategory?.length>0?
